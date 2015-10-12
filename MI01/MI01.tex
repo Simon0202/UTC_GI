@@ -1,0 +1,207 @@
+% !TEX encoding = UTF-8 Unicode
+\documentclass[11.5pt]{report}
+%À compiler avec XeLaTeX
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[frenchb]{babel}
+\usepackage{lmodern}
+\usepackage{fullpage}
+\usepackage[normalem]{ulem}
+\usepackage{epigraph}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{dialogue}
+
+%\usepackage{fontspec} % Provide features for AAT and OpenType fonts
+%\setmainfont{Avenir Next} % Define the default font family
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+
+
+
+\lstset{showstringspaces=false}
+\lstset{frame=single}
+\lstset{
+    language=C,
+    sensitive=true,
+    breaklines=true,
+    tabsize=2
+}
+
+
+
+\title{Structure d'un calculateur : \textbf{MI01}}
+\author{nope}
+\date{Automne 2015}
+
+\begin{document}
+\maketitle{}
+
+\tableofcontents
+
+\chapter{Bases du VHDL}
+\section{VHDL ????}
+Le \emph{VHDL}, pour \emph{VHSIC Hardware Description Language}, est un langage permettant de spécifier des architectures matérielles.
+Il permet, par le biais de synthétiseurs, de transformer des logiques/processus en matériel réel composé de portes logiques.
+
+\section{Structure d'un programme VHDL}
+La modélisation d'un composant en VHDL se fait par le biais de deux structures : \emph{Entity} et \emph{Architecture}.\\
+Ces deux structures fonctionnent ensemble afin de modéliser de façon complète un composant.
+\subsection{Entity}\label{entites}
+Cette structure permet de définir quelles seront les interfaces du composant.
+On ne modélise pas son contenu, ni son comportement, mais juste les entrées/sorties du composant.\\
+Ces entrées/sorties d'un composant s'appellent \textbf{ports} en VHDL.\\
+La structure \emph{entity} se présente généralement de cette façon:
+\begin{verbatim}
+ENTITY nomEntite IS
+	PORT(entreeExemple : IN typeSignal, sortieExemple : OUT typeSignal);
+END
+\end{verbatim}
+Un exemple de structure \emph{entity} pour le composant \emph{inverseur} peut être le suivant :
+\begin{verbatim}
+ENTITY inverseur IS
+	PORT (entree : IN BIT, sortie : OUT BIT);
+END inverseur;
+\end{verbatim}
+Dans cet exemple, on a un composant \emph{inverseur} qui a donc un fil d'entrée qui s'appelle \emph{entree} et un fil de sortie s'appelant \emph{sortie}.
+\subsection{Architecture}
+Cette structure permet d'implémenter le composant en lui-même; elle est donc associée à une entité.
+On va ici définir comment se comporte notre composant.
+La structure \emph{architecture} se présente sous la forme suivante :
+\begin{verbatim}
+ARCHITECTURE nomArchitecture OF entiteEnQuestion IS
+-- déclarations
+BEGIN
+	-- instructions
+END nomArchitecture;
+\end{verbatim}
+Pour reprendre l'exemple de l'entité \emph{inverseur}, son \emph{architecture} serait :
+\begin{verbatim}
+ARCHITECTURE architectureInverseur OF inverseur IS
+BEGIN
+	sortie <= NOT e;
+END architectureInverseur;
+\end{verbatim}
+
+\section{Types de données en VHDL}
+\subsection{Conteneurs et types}
+Une donnée en VHDL se déclare de la façon suivante :
+\begin{verbatim}
+CONTENEUR nom : TYPE ;
+\end{verbatim}
+Il existe 3 conteneurs en VHDL :
+\begin{itemize}
+\item{Les constantes - \emph{CONSTANT} -, qui prennent une valeur qui ne bougera pas ;}
+\item{Les variables - \emph{VARIABLE} -, qui ont une valeur modifiable ;}
+\item{Les signaux - \emph{SIGNAL} -, qui modélisent une entrée/sortie entre deux processus d'une fonction ;}
+\end{itemize}
+Ces conteneurs peuvent contenir des données ayant un certain type parmi les suivants :
+\begin{itemize}
+\item{Type entier : \emph{INTEGER} ;}
+\item{Type bit (0/1) : \emph{BIT} ;}
+\item{Type vecteur - aka tableau de taille n : type\emph{\_VECTOR} (0 \emph{TO} n-1);}
+\item{Type énuméré : on créé un type qui peut prendre des valeurs qu'on définit\footnote{par exemple \emph{TYPE feu IS (vert,orange,rouge)} définit un nouveau type qui ne peut prendre que les valeurs 'vert', 'orange', ou 'rouge'.};}
+\end{itemize}
+\subsubsection{Les types logiques standard}
+Après avoir lu les différents types énoncés, on peut se dire qu'il est logique d'utiliser le type \emph{BIT} pour les signaux.
+En réalité, il existe des \emph{standards} qui sont à privilégier sur le type \emph{BIT} décrit plus en haut : ces standards sont les types \textbf{\emph{std\_logic}} et \textbf{\emph{std\_logic\_vector}}.
+\par
+Par rapport au type \emph{BIT}, ces deux types nécessitent l'utilisation de la bibliothèque standard IEEE et apportent deux valeurs en plus du 0 et 1 : Z et X, qui sont utilisés lorsque on n'est pas sur de la validité du signal.\\
+Plus important encore, elles permettent l'utilisation des opérateurs logiques qui seront décrits plus loin.
+\par
+Pour inclure la bibliothèque standard IEEE, il faut mettre au début du programme VHDL :
+\begin{verbatim}
+LIBRARY IEEE;
+USE IEEE.std_logic_1164.all
+\end{verbatim}
+
+\section{Opérateurs principaux en VHDL}
+\subsection{Opérateurs d'affectation}
+Il y a deux opérateurs d'affectation qui dépendent du conteneur :
+\begin{itemize}
+\item{Pour un \emph{signal}, on utilise \emph{<signal> \textbf{<=} <valeur>} ;}
+\item{Pour une variable/constante, on utilise \emph{<variable> \textbf{:=} <valeur>} ;}
+\end{itemize}
+
+\subsection{Opérations logiques}
+Sur le type \emph{std\_logic}, il est possible d'utiliser les opérations \emph{AND, OR, NOT, XOR}.
+Ces opérations fonctionnent avec les valeurs \emph{true} ou \emph{false}.
+
+\subsection{Opérateurs arithmétiques et de comparaison}
+Il existe bien sur les opérateurs classiques de comparaison : \emph{= /= < <= > =} ainsi que les opérateurs mathématiques \emph{+ - * /}.
+ 
+\section{Structures de contrôle}
+\subsection{Affectation conditionnelle}
+L'affectation conditionnelle prend la forme des mots clés \emph{WHEN, ELSE} en VHDL.
+C'est l'équivalent du \emph{if, else} dans un langage de programmation \emph{traditionnel}.
+Une affectation conditionnelle générale prend la forme suivante :
+\begin{verbatim}
+signal_random <= 'valeur' WHEN 'condition' [ELSE]
+				 ['valeur2' WHEN 'condition2' ELSE]
+				 ...;
+\end{verbatim}
+
+\chapter{Modélisation matérielle}
+\section{Les types de modélisation}
+Il est possible de modéliser un même composant sous deux façons différentes : de façon comportementale ou structurelle.
+\subsection{Modélisation comportementale}
+La modélisation comportementale consiste, comme son nom l'indique, à écrire comment le circuit doit se comporter, son fonctionnement effectif.
+Cette modélisation se fait par le biais des opérateurs décrits plus en haut.
+\par
+Dans cette modélisation, c'est le synthétiseur qui va choisir les circuits et composants du nouveau composant en fonction des instructions logiques écrites.
+\par
+Un exemple de modélisation comportementale d'un "non et" serait :
+\begin{verbatim}
+s <= NOT(x AND y);
+\end{verbatim}
+
+\subsection{Modélisation structurelle}
+Dans cette modélisation, on modélise le comportement à travers des composants.
+En fait, on spécifie exactement quels seront les composants utilisés pour arriver au comportement souhaité, au lieu de spécifier le comportement de façon abstraite.
+\par
+En VHDL, l'utilisation d'un composant se fait par le mot-clé \emph{PORTMAP}.\\
+L'utilisation générale se fait de la manière suivante :
+\begin{verbatim}
+nomComposant : composantUtilisé PORTMAP (<signaux d'entrée du composant>);
+\end{verbatim}
+Dans l'exemple suivant, on souhaite utiliser le composant \emph{additionneur1bit}, qui prend en entrée \emph{a,b} qui sont les bits à additionner, et \emph{Cin} qui est un bit de retenue.
+\begin{verbatim}
+c1 : additionneur1bit PORTMAP (a,b,Cin);
+\end{verbatim}
+Le composant c1 est donc un composant de type \emph{additionneur1bit} qui prendra en entrée les signaux \emph{a,b,Cin}.
+
+\section{Logique séquentielle / Machines à états}
+\subsection{Concurrentiel vs Séquentiel}
+Il y a deux logiques utilisables lors de la modélisation d'un composant : on peut penser de façon \emph{concurrentielle} ou de façon \emph{séquentielle}.\\
+Comme leurs noms l'indiquent, ces deux logiques différent sur l'ordre d'exécution des commandes.
+En logique \emph{concurrentielle}, il n'y a pas d'ordre d'exécution pour chaque instruction.
+Les instructions peuvent donc s'effectuer dans n'importe quel ordre, ce qui est peu utilisable pour résoudre la majorité des problèmes.
+\par
+La logique \emph{séquentielle}, quant à elle, possède un ordre d'exécution, comme les programmes \emph{classsiques}.
+On parle alors de \emph{processus}, ou \emph{process}.
+
+\subsection{Machines à états}
+Les machines à états sont des graphes permettant de modéliser une séquence à travers ses états.
+Les machines à états sont très utiles à la modélisation séquentielle puisque ils permettent de voir exactement l'état du système à travers le temps, les entrées et ses sorties.
+\par
+Comme énoncé dans le cours, la machine a états permet de voir quelle séquence sera exécutée en fonction des entrées.
+\subsubsection{\emph{Problème du chariot}}
+%% faire un exemple?
+todo
+
+\subsection{Le séquentiel en VHDL}
+Le séquentiel prend la forme de \emph{PROCESS} en VHDL.
+\par
+Un \emph{process} est déclenché par des signaux d'entrées.
+Si des process contiennent le même signal de déclenchement\footnote{Ces signaux sont regroupés dans une \emph{liste de sensibilité} par process}, ils sont déclenchés en même temps.
+\par
+Les process permettent l'accès à des instructions/constructions bien plus élaboreés que celles disponibles lors d'une modélisation concurentielle.
+On a donc accès à des boucles - \emph{LOOP} -, des tant-que - \emph{WHILE} -, \ldots
+% faire l'inventaire des fonctions ?
+
+
+
+\end{document} 

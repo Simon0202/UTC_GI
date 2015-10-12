@@ -1,0 +1,238 @@
+% !TEX encoding = UTF-8 Unicode
+\documentclass{report}
+%À compiler avec XeLaTeX
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[frenchb]{babel}
+\usepackage{lmodern}
+\usepackage{fullpage}
+\usepackage[normalem]{ulem}
+\usepackage{epigraph}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{dialogue}
+
+%\usepackage{fontspec} % Provide features for AAT and OpenType fonts
+%\setmainfont{Avenir Next} % Define the default font family
+
+\lstset{showstringspaces=false}
+\lstset{frame=single}
+\lstset{
+    language=C,
+    sensitive=true,
+    breaklines=true,
+    tabsize=2
+}
+
+
+
+\title{Intelligence Artificielle : \textbf{IA01}}
+\author{}
+\date{Automne 2015}
+
+\begin{document}
+\maketitle{}
+
+\tableofcontents
+
+
+%%% Chapitre introductif pas très utile
+\chapter{La notion d'Intelligence Artificielle}
+
+\section{Définition et histoire de l'IA}
+Cette section ne semble pas très utile, mais elle peut tomber à un médian.
+\subsection{Définition}
+La notion d'\emph{Intelligence Artificielle} est composée de deux mots : \emph{Intelligence} et, bien sûr, \emph{Artificielle}.
+\par
+L'\emph{Intelligence} signifie pouvoir \emph{saisir des connaissances}, les \emph{appliquer/adapter} à différentes situations mais aussi \emph{conceptualiser} le monde qui nous entoure.
+\par
+Lorsque on associe l'\emph{Intelligence} à \emph{Artificielle}, on obtient non pas un ordinateur pensant mais une activité \emph{d'acquisition de connaissances}.
+Par le biais de l'IA, les ordinateurs obtiennent donc des connaissances qu'ils pourront utiliser \emph{intelligemment}.
+
+\subsection{Histoire de l'IA}
+à faire
+
+\section{Les approches à l'Intelligence Artificielle}
+Aujourd'hui, il existe principalement 4 approches à la création d'une IA : l'approche \textbf{symbolique}, l'approche \textbf{numérique}, l'approche \textbf{hybride} et l'approche \textbf{distribuée}.
+\subsection{Approche symbolique}
+L'approche symbolique vise à étudier le raisonnement, et se base donc sur des raisonnements créés, pensés par les programmeurs de l'IA.\\
+En effet, dans cette approche, l'IA suit des processus de raisonnement qui ont étés formalisés - et codés - par le programmeur.
+Par conséquent, dans ce type d'approche, il faut représenter de façon explicite le problème et ces méthodes de résolution.\\
+Un exemple utilisant cette approche peuvent être les \emph{systèmes experts}.
+\subsection{Approche numérique}
+Dans cette approche, on étudie la perception et les réflexes face à un problème.
+Tandis que l'approche symbolique utilise des raisonnements créés explicitement, l'approche numérique exploite la notion d'\emph{apprentissage par l'exemple}.
+En effet, il y a peu de programmation explicite, et ces IA se basent sur des modèles informatiques.
+On a donc des systèmes qui évoluent et s'adaptent automatiquement.
+\subsection{Approche hybride}
+Cette approche utilise les deux approches décrites ci-dessus.
+\subsection{Approche distribuée}
+L'approche distribuée se différencie des autres par rapport à la relation qu'entretient un système avec les autres.
+Effectivement, l'IA traditionnelle fonctionne de manière indépendante, sans contexte ni communication avec d'autres systèmes.
+Le but de l'approche distribuée est donc de créer des systèmes composés de multiples sous-systèmes, qui interagissent entre eux.
+
+
+%% 1er vrai chapitre : programmation LISP
+\chapter{Programmation Lisp}
+\emph{Lisp}, aka \emph{List Processor} est le langage principalement utilisé pour réaliser les différents TD/TP que nous tend l'UTC.
+Bien qu'il soit ancien, il n'est pas à mettre entre parenthèses\footnote{ha ha ha ha ha}.\\
+Ainsi, il sera question dans ce chapitre des différentes fonctionnalités vues à propos de ce langage\footnote{plus précisément le Common Lisp}, plutôt que de la représentation même de connaissances.
+
+\section{Principes de programmation}
+Lisp diffère pas mal des autres langages sur sa manière d'être programmé.\\
+Par rapport à un langage bien connu comme le C, Lisp se programme de façon \emph{interactive}, \emph{fonctionnelle} et \emph{symbolique}.
+\subsection{Interactivité}
+L'\emph{interactivité} signifie qu'il n'y a pas de compilation préalable avant l'exécution : un fichier code Lisp est donc un ensemble de commandes qui seront directement interprétés par un \emph{interpréteur Lisp}.
+\subsection{Fonctionnel}
+La programmation \emph{fonctionnelle} est un paradigme de programmation, au même titre que la programmation orienté objet, par exemple.\\
+Comme son nom l'indique, la programmation fonctionnelle se base surtout sur l'utilisation de fonctions qui s'appellent entre elles.
+Ainsi, un programme Lisp n'aura pas de structure fixe, contrairement à un programme C qui commencera par exécuter \emph{main()}.
+Un programme Lisp sera donc principalement composé de fonctions qui peuvent être récursives.
+\par
+\subsection{Symbolisme}
+Le \emph{symbolique} signifie quant à lui que l'on manipule pas seulement des \emph{chiffres} ou \emph{caractères}, mais une sorte d'information plus générale que ça : les symboles.\\
+Il n'y a donc pas de \emph{type} à proprement parler : pas de \emph{int, float, double, char, \ldots} mais que des symboles.
+
+\section{Concepts basiques du Lisp}
+\subsection{Objet de base : l'atome}
+Un atome est soit un nombre, soit un symbole.\\
+La différence entre un nombre et un symbole tient dans le fait qu'un symbole est une séquence non vide de caractères qui \emph{pointe} vers un objet - un objet pouvant être une donnée, ou encore une fonction.\\
+% insérer schema
+
+\subsection{Structure de base : la liste}
+La liste est la principale brique du \emph{Lisp}.
+Une liste entre parenthèses, et sert principalement à lancer des fonctions, ou sinon à\ldots lister des items.\\
+Par exemple :
+\begin{verbatim}
+(liste avec des objets)
+\end{verbatim}
+Dans cette liste, on a donc les objets
+\begin{verbatim}
+liste avec des objets
+\end{verbatim}
+Mais les listes servent surtout à appeler des fonctions.
+Par exemple, si on veut appeler la fonction \emph{merci} avec les arguments \emph{oui,1}, il faudra l'appeler de cette manière :
+\begin{verbatim}
+(merci oui 1)
+\end{verbatim} 
+
+\subsection{Valeurs logiques / Prédicats}
+Il existe en Lisp des fonctions qui retournent vrai ou faux; ce sont les \emph{prédicats}.
+Ces prédicats servent principalement à vérifier le type d'une variable.
+Les prédicats principalement utilisés sont ici \emph{numberp, listp, floatp, integerp, null, symbolp, stringp}.\\
+Il existe aussi des \emph{semi-prédicats}, qui sont des fonctions qui renvoient soit faux, soit une valeur considérée vraie\footnote{Tout ce qui n'est pas NIL est vrai en Lisp}.\\
+\emph{member}, \emph{and/or}, sont des semis-prédicats.
+
+\subsection{Définition de fonction}
+Il est possible de définir une fonction de deux manières:
+\begin{itemize}
+\item{avec \emph{defun}, qui permet d'avoir une fonction nommée ;}
+\item{avec \emph{lambda}, qui permet d'avoir une fonction anonyme ;}
+\end{itemize}
+% détailler les deux
+
+\section{Variables, portée, visibilité}
+Les variables peuvent avoir deux portées différentes : \emph{lexicale} ou \emph{dynamique}.
+\subsection{Variables lexicales}
+Une \textbf{variable lexicale} est une variable qui a une portée \emph{locale}, dans le sens où elle ne sera vue que dans un contexte donné: là où elle aura été définie.\\
+Un exemple implicite de variables lexicales sont les paramètres d'une fonction.
+Prenons par exemple la fonction suivante :
+\begin{verbatim}
+(defun test(x)
+  (print x)
+)
+\end{verbatim}
+Il parait évident que le parametre $x$ n'existera que dans le contexte de la fonction $test$, et non pas en dehors de cette fonction.\\
+Il est à noter que les variables lexicales ne sont vues qu'à un niveau.
+Par exemple, si on avait une autre fonction $test2$ dans notre fonction $test$ ci-dessus, et qu'elle essaye d'accéder à la variable $x$ de la fonction $test$, ça ne fonctionnerait pas.
+\subsubsection{Variables locales}
+Les variables \emph{locales} en Lisp sont les variables définies par les fonctions \emph{let/let*}.
+En gros, ce sont des variables qui sont uilisées qu'au sein d'une fonction.\\
+Par défaut, les variables locales sont des variables \textbf{lexicales}.
+    
+\paragraph{Variables dynamiques}
+Les variables dynamiques sont des variables à la visibilité globale.\\
+C'est à dire qu'une variable dynamique sera vue de toutes les sous fonctions d'une fonction, etc \ldots
+\subsubsection{Variables globales}
+Une variable globale est donc une variable dynamique.\\
+Pour définir une variable globale, il faut utiliser l'opérateur \emph{defvar}, ou \emph{defparameter}, avec la différence que \emph{defparameter} réinitialise la variable avec la valeur donnée même si elle existe déjà.
+
+\section{Structures de contrôles / Blocs}
+\subsection{Opérateur conditionnel : \emph{if}}
+L'opérateur \emph{if} se présente de la manière suivante :
+\begin{verbatim}
+(if [condition]
+  [truc a executer si condition vraie]
+  [truc a executer si condition fausse]
+)
+\end{verbatim}
+L'opérateur \emph{if} ne permet donc que d'exécuter qu'une seule commande.
+
+\subsection{Blocs conditionnels : cond/when/unless}
+Ces 3 blocs répondent à la limite principale du \emph{if} qui ne permet de n'exécuter qu'une seule commande.\\
+Ces 3 structures permettent en effet d'exécuter des blocs d'instruction, plûtot qu'une seule instruction.\\
+La différence entre ces 3 blocs tient dans les conditions : \emph{cond} permet de faire plusieurs tests, \emph{when} n'en teste qu'une seule et \emph{unless} correspond à un \emph{sauf si}.\\
+Syntaxiquement, ces blocs s'utilisent de la manière suivante :
+\begin{lstlisting}
+; cond
+(cond 
+  ([test1]
+    ([action1]
+     [action2]
+    )
+  )
+  ([test2]
+   ([action1]
+    [action2]
+   )
+  )
+)
+
+; when
+(when [test]
+  [action1]
+  [action2]
+)
+
+; unless
+(unless [test]
+  [action1]
+  [action2]
+)
+\end{lstlisting}
+
+\subsection{Blocs itératifs}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document} 

@@ -1,0 +1,263 @@
+% !TEX encoding = UTF-8 Unicode
+\documentclass{report}
+%À compiler avec XeLaTeX
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[frenchb]{babel}
+\usepackage{lmodern}
+\usepackage{fullpage}
+\usepackage[normalem]{ulem}
+\usepackage{epigraph}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{dialogue}
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+
+%\usepackage{fontspec} % Provide features for AAT and OpenType fonts
+%\setmainfont{Avenir Next} % Define the default font family
+
+% spécifiques aux maths
+\usepackage{amsmath}
+\usepackage{systeme}
+\usepackage{amssymb}
+\newtheorem{mydef}{Définition}
+
+
+
+
+\lstset{showstringspaces=false}
+\lstset{frame=single}
+\lstset{
+    language=C,
+    sensitive=true,
+    breaklines=true,
+    tabsize=2
+}
+
+
+
+\title{\textbf{MT11} : Chapitre 11 et 12\\Systèmes linéaires, matrices, déterminants}
+\date{Automne 2015}
+
+\begin{document}
+\maketitle{}
+
+\tableofcontents
+
+\chapter{Systèmes Linéaires}
+\section{Notions à propos des systèmes linéaires}
+Un système linéaire est un ensemble d'équations qui ont la forme suivante :
+
+\[
+\left\{
+\begin{array}{c c c}
+	a_{11} x_1 + a_{12} x_2 + \ldots + a_{1m} x_m = b_1 \\
+	a_{21} x_1 + a_{22} x_2 + \ldots + a_{2m} x_m = b_2 \\
+	\vdots \\
+	a_{n1} x_1 + a_{n2} x_2 + \ldots + a_{nm} x_m = b_n
+\end{array}
+\right.
+\]
+Les $a$ représentent des coefficients se trouvant dans $\mathbb{R}$, c'est à dire des chiffres réels.
+De la même manière, les $b$ sont aussi des chiffres donnés se trouvant dans $\mathbb{R}$.
+$n$ et $m$ représentent respectivement la \emph{ligne} et la \emph{colonne}.
+Enfin, $x$ représente les inconnues que l'on cherche à trouver.\\
+\par
+Au niveau des solutions, un système linéaire aura \emph{généralement} 3 cas possibles :
+\begin{itemize}
+	\item{Pas de solutions - par exemple si on se retrouve avec une inconnue qui prend 2 valeurs distinctes en même temps ;}
+	\item{Une solution unique ;}
+	\item{Une infinité de solutions, qui dépendent d'un certain nombre de paramètres fixés ;}
+\end{itemize}
+\par
+Enfin, il existe une définition assez pratique pour la résolution de systèmes :
+\begin{mydef}
+Deux systèmes sont équivalents si ils admettent le même ensemble de solutions.
+\end{mydef}
+Cela veut dire qu'on va pouvoir utiliser la méthode de \emph{Gauss} pour résoudre les systèmes; méthode qui sera développée en \ref{Gauss}.
+\subsection{Systèmes à 2 inconnues}
+Un système linéaire à 2 inconnues est tout simplement un système composée de 2 équations à\ldots 2 inconnues.
+Ici, il est possible de passer par une méthode de combinaison pour résoudre le système.
+Par exemple, dans le système linéaire à 2 inconnues suivant :
+\[
+\left\{
+\begin{array}{c c c}
+	ax+by = c\\
+	a'x+b'y = c'
+\end{array}
+\right.
+\]
+On a le couple de solutions :\\
+bla bla bla
+% a faire ?
+
+\subsection{Systèmes linéaires homogènes}
+Un système linéaire homogène est un système dans lequel tous les \emph{seconds membres} sont égaux à 0, comme dans le système linéaire général homogène suivant :
+\[
+\left\{
+\begin{array}{c c c}
+	a_{11} x_1 + a_{12} x_2 + \ldots + a_{1m} x_m = 0 \\
+	a_{21} x_1 + a_{22} x_2 + \ldots + a_{2m} x_m = 0 \\
+	\vdots \\
+	a_{n1} x_1 + a_{n2} x_2 + \ldots + a_{nm} x_m = 0
+\end{array}
+\right.
+\]
+Dans un système linéaire homogène, on a ici que 2 possibilités face aux solutions :
+\begin{itemize}
+	\item{Il existe une solution unique : la solution triviale 0 ;}
+	\item{Il existe une infinité de solutions ;}
+\end{itemize}
+De plus, dans le cas où $(E)$ et $(E_0)$ sont deux systèmes dont $(E_0)$ est un système homogène, si jamais on a une solution $(x_1,x_2,\ldots,x_n)$ pour $(E)$, il est possible de trouver une autre solution $(x_1',x_2',\ldots,x'_n)$ pour $(E)$ si $(x_1'-x_1, x'_2-x_2,\ldots,x'_n-x_n)$ est solution de $(E_0)$.
+
+\section{Résolution de systèmes linéaires : Gauss}\label{Gauss}
+La méthode de \emph{Gauss} se base sur les 3 règles suivantes :
+\begin{itemize}
+	\item{Permutation d'équation;}
+	\item{Multiplication d'équation par un réel non nul;}
+	\item{Ajout d'une équation à une autre;}
+\end{itemize}
+\begin{mydef}
+Transformer un système linéaire $(E)$ à l'aide des règles de Gauss donne un nouveau système $(E')$ équivalent au système $(E)$. Ces deux systèmes ont les mêmes solutions.
+\end{mydef}
+\subsection{Méthode}
+La méthode de \emph{Gauss} consiste donc principalement à permuter, ajouter/soustraire les équations du systèmes entre elles ou encore à les multiplier par un réel non nul.\\
+Le but est d'abord d'effectuer une \emph{descente}, en enlevant le plus d'inconnues possibles, puis de \emph{remonter} avec les inconnues fraichement trouvées.
+
+\chapter{Matrices}
+\section{Notions générales}
+Une matrice est juste un tableau de nombres.
+\[
+\begin{pmatrix}
+   a_1 & b_1 & c_1\\
+   a_2 & b_2 & c_1\\ 
+\end{pmatrix}
+\]
+Une écriture réduite d'une matrice $A$ de taille $n$ lignes et $m$ colonnes est la suivante : $ A\in\mathbb{M}_{nm}$.\\
+Une matrice ayant le même nombre de lignes que de colonnes est une matrice \emph{carrée}.
+
+\section{Calcul matriciel}
+Il est possible d'effectuer un certain nombre d'opérations sur une matrice ou entre matrices.
+\subsection{Somme de deux matrices}
+Pour faire la somme de deux matrices, il faut que ces deux matrices aient \textbf{la même taille}.\\
+Ensuite, il suffit simplement d'ajouter les coefficients entre eux.
+Par exemple, la somme des matrices suivantes :
+\[
+\begin{pmatrix}
+   1 & 2\\
+   3 & 4\\ 
+\end{pmatrix}
+\begin{pmatrix}
+   5 & 6\\
+   7 & 8\\ 
+\end{pmatrix}
+\]
+\begin{center}donnera\end{center}
+\[
+\begin{pmatrix}
+   6 & 8\\
+   10 & 12\\ 
+\end{pmatrix}
+\]
+Quant aux propriétés de la somme, elle est \textbf{commutative et associative}.
+\subsection{Multiplication d'une matrice par un réel}
+Là aussi cette opération s'effectue sans encombres.
+Il suffit de multiplier chaque coefficient de la matrice par le réel en question.
+% mettre exemple
+
+\subsection{Produit de matrices}
+Cette opération est plus compliquée que les deux autres.\\
+Les conditions pour l'effectuer sont de vérifier la compatibilité entre les deux matrices.
+En effet, il faut que le \textbf{nombre de colonnes} de la première matrice soit égal au \textbf{nombre de lignes} de la deuxième matrice.\\
+L'ordre est donc important !
+Prenons par exemple la matrice $A \in M_{13}$ et $B \in M_{32}$.
+Si $A * B$ est possible, $B * A$ ne l'est pas.\\
+Quant au calcul des coefficients en lui même, il s'agit de faire la somme des multiplications de chaque coefficient de la ligne $n$ de la 1ère matrice par le coefficient de la colonne $m$ de la 2ème matrice.
+% insérer exemple c'est pas clair du tout ça
+
+\subsection{Tranposée d'une matrice}
+Il s'agit de passer les lignes en colonnes d'une matrice\ldots en respectant l'ordre !
+Par exemple, la matrice 
+\[
+\begin{pmatrix}
+   1 & 2\\
+   3 & 4\\
+   5 & 6\\ 
+\end{pmatrix}
+\]
+\begin{center}deviendra\end{center}
+\[
+\begin{pmatrix}
+   1 & 3 & 5\\
+   2 & 4 & 6\\
+\end{pmatrix}
+\]
+\section{Inversion d'une matrice}
+On parle ici de matrices dites \emph{carrées}, c'est à dire des matrices qui ont autant de lignes que de colonnes.
+\par
+L'inverse d'une matrice carrée $A$ correspond à une matrice $A^{-1}$ telle que $A * A^{-1} = I_d$, avec $I_d$ étant la matrice identité de la même taille que $A$.
+\subsection{Calcul pratique de l'inverse}
+Soit $A$ une matrice de taille $n,m$, $X$ et $B$ deux matrices colonnes de taille $n$.
+Pour calculer l'inverse, il faut résoudre un système linéaire tel que $A*X=B$.
+En résolvant ce système, on obtient les coefficients de la matrice $A^{-1}$.
+
+\section{Noyau et image d'une matrice}
+\begin{mydef}
+Le noyau d'une matrice $A$ est l'ensemble des solutions $X$ tel que pour tout $X \in \mathbb{R}$, $AX=0$.
+\end{mydef}
+\par
+\begin{mydef}
+L'image d'une matrice, est l'ensemble des solutions $B$ tel que pour toute matrice colonne de taille $n$, il existe au moins une solution pour $A*X=B$.
+\end{mydef}
+
+\subsection{Calcul pratique}
+Pour ces deux cas, il suffit de résoudre un système linéaire.
+\par
+Pour le noyau, il faut résoudre le système linéaire $AX=0$, tandis que pour l'image, il faut résoudre un système linéaire $AX=B$, avec $B$ étant un vecteur colonne de taille $n$ pour une matrice A de $n$ lignes, $m$ colonnes.
+
+
+\chapter{Bases et sous-espaces vectoriels}
+\section{Sous-espace vectoriel}
+Un sous-espace vectoriel est un ensemble qui respecte deux propriétés :
+\begin{itemize}
+\item{La stabilité de l'addition ;}
+\item{La stabilité de la multiplication ;}
+\end{itemize}
+\subsubsection{Stabilité de l'addition}
+Soit $F$ un ensemble, et $B$, $B'$ deux éléments $\in F$.
+\par
+$F$ est stable par l'addition si on a $B+B' \in F$.
+\subsubsection{Stabilité de la multiplication}
+Soit $\lambda$ un réel $\in \mathbb{R}$.\\
+$F$ est stable par la multiplication si on a, pour $X \in F$, $\lambda X \in F$.
+
+\section{Histoire de famille}
+\subsection{Famille génératrice}
+Une famille génératrice ${v_1,v_2,\ldots,v_p}$ d'un sous-espace vectoriel $F$ est un ensemble de coefficients pour lequel n'importe quel vecteur de $F$ s'exprime à partir d'une combinsaison linéaire de ${v_1,v_2,\ldots,v_p}$.
+
+\subsection{Famille libre, liée}
+Une famille \emph{libre} est une famille pour laquelle l'équation ${\lambda_1 v_1 + \lambda_2 + v_2 + \ldots \ \lambda_n + v_n = 0}$ implique nécessairement que les coefficients réels $\lambda_1, \lambda_2, \ldots, \lambda_n$ soient égaux à $0$.
+Une famille non libre est dite \emph{liée}.
+\par
+Pour savoir si une famille est libre, il suffit de prendre une combinaison linéaire et de résoudre le système égal à $0$.
+
+\section{Bases}
+\begin{mydef}
+Une base $B$ est une famille génératrice et libre d'un espace vectoriel $F$.\\
+Le nombre d'éléments dans la base $B$ est noté $dim \; F$ et est commun à toutes les bases de $F$.
+\end{mydef}
+Il existe une base spéciale, la \emph{base canonique}, qu'on note $\mathbb{B}$.
+La base canonique est une famille composée de vecteurs $(e_1, e_2, \ldots, e_m)$, pour $1 \leq i \leq m$, avec $e_i$ étant un vecteur de $\mathbb{R}^m$ dont toutes les composantes sont nulles, sauf la $i$-ème qui vaut 1. 
+\chapter{Applications linéaires}
+\section{1}
+
+\section{2}
+
+\chapter{Déterminants, valeurs propres}
+
+
+
+ \end{document} 
