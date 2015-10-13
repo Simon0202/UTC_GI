@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015) (preloaded format=xelatex 2015.9.12)  13 OCT 2015 18:55
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015) (preloaded format=xelatex 2015.9.12)  13 OCT 2015 22:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -24,6 +24,14 @@ File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
+(/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\@emptytoks=\toks14
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)
 (/usr/local/texlive/2015/texmf-dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
 
@@ -44,11 +52,11 @@ Package: colortbl 2012/02/13 v1.0a Color table columns (DPC)
 Package: array 2014/10/28 v2.4c Tabular extension package (FMi)
 \col@sep=\dimen103
 \extrarowheight=\dimen104
-\NC@list=\toks14
+\NC@list=\toks15
 \extratabsurround=\skip43
 \backup@length=\skip44
 )
-\everycr=\toks15
+\everycr=\toks16
 \minrowclearance=\skip45
 )
 \rownum=\count88
@@ -69,8 +77,8 @@ File: svgnam.def 2007/01/21 v2.11 Predefined colors according to SVG 1.1 (UK)
 ))
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2015/03/17 v1.2c Input encoding file
-\inpenc@prehook=\toks16
-\inpenc@posthook=\toks17
+\inpenc@prehook=\toks17
+\inpenc@posthook=\toks18
 
 
 Package inputenc Warning: inputenc package ignored with utf8 based engines.
@@ -122,7 +130,7 @@ LaTeX Info: Redefining \degres on input line 740.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/carlisle/scalefnt.sty)
 (/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
-\KV@toks@=\toks18
+\KV@toks@=\toks19
 )
 (/usr/local/texlive/2015/texmf-dist/tex/latex/lm/lmodern.sty
 Package: lmodern 2009/10/30 v1.6 Latin Modern Fonts
@@ -167,7 +175,7 @@ Package: fullpage 1999/02/23 1.1 (PWD)
 \UL@box=\box26
 \UL@hyphenbox=\box27
 \UL@skip=\skip53
-\UL@hook=\toks19
+\UL@hook=\toks20
 \UL@height=\dimen108
 \UL@pe=\count94
 \UL@pixel=\dimen109
@@ -185,7 +193,7 @@ Package: epigraph 2009/09/02 v1.5c typesetting epigraphs
 (/usr/local/texlive/2015/texmf-dist/tex/latex/listings/listings.sty
 \lst@mode=\count95
 \lst@gtempboxa=\box29
-\lst@token=\toks20
+\lst@token=\toks21
 \lst@length=\count96
 \lst@currlwidth=\dimen111
 \lst@column=\count97
@@ -315,8 +323,8 @@ Package: blkcntrl 2001/08/31 v1.2 block control
 (/usr/local/texlive/2015/texmf-dist/tex/latex/frankenstein/moredefs.sty
 Package: moredefs 2001/08/31 v1.8 more defining commands (Frankenstein's brain)
 
-\sc@toks@a=\toks21
-\sc@toks@b=\toks22
+\sc@toks@a=\toks22
+\sc@toks@b=\toks23
 )
 (/usr/local/texlive/2015/texmf-dist/tex/latex/relsize/relsize.sty
 Package: relsize 2013/03/29 ver 4.1
@@ -329,65 +337,74 @@ File: lstmisc.sty 2014/09/06 1.5e (Carsten Heinz)
 ) (./NF16.aux)
 \openout1 = `NF16.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 33.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 33.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 34.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 34.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 33.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 34.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Info: Redefining \dots on input line 33.
-LaTeX Info: Redefining \up on input line 33.
+LaTeX Info: Redefining \dots on input line 34.
+LaTeX Info: Redefining \up on input line 34.
 
 
 Package frenchb.ldf Warning: Add \usepackage{fontspec} to the
-(frenchb.ldf)                preamble of your document, on input line 33.
+(frenchb.ldf)                preamble of your document, on input line 34.
 
 \c@lstlisting=\count103
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 34.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 35.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 34.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 35.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 34.
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 35.
 
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 34.
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 35.
 
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 34.
+(Font)              <12> on input line 35.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 34.
+(Font)              <8> on input line 35.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 34.
+(Font)              <6> on input line 35.
+LaTeX Font Info:    Try loading font information for U+msa on input line 35.
 
+(/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 35.
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
 
 LaTeX Warning: No \author given.
 
@@ -408,23 +425,23 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 
 ]
 Chapitre 1.
-LaTeX Font Info:    Try loading font information for TS1+lmr on input line 61.
+LaTeX Font Info:    Try loading font information for TS1+lmr on input line 62.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) [2
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 98--102
+Underfull \hbox (badness 10000) in paragraph at lines 99--103
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 114--115
+Underfull \hbox (badness 10000) in paragraph at lines 115--116
 
  []
 
 [3]
-Underfull \hbox (badness 10000) in paragraph at lines 143--146
+Underfull \hbox (badness 10000) in paragraph at lines 144--147
 
  []
 
@@ -433,16 +450,20 @@ Chapitre 2.
 [6
 
 ]
+Missing character: There is no é in font lmmi10!
+Missing character: There is no é in font lmmi10!
+Missing character: There is no é in font lmmi10!
+ [7]
 Chapitre 3.
 
 LaTeX Font Warning: Font shape `T1/lmr/bx/sc' undefined
-(Font)              using `T1/lmr/bx/n' instead on input line 221.
+(Font)              using `T1/lmr/bx/n' instead on input line 243.
 
-[7
+[8
 
 ]
 Chapitre 4.
-[8
+[9
 
 ] (./NF16.aux)
 
@@ -450,12 +471,12 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 4900 strings out of 493706
- 68637 string characters out of 6145769
- 207438 words of memory out of 5000000
- 8153 multiletter control sequences out of 15000+600000
- 76162 words of font info for 53 fonts, out of 8000000 for 9000
+ 4988 strings out of 493706
+ 69921 string characters out of 6145769
+ 207896 words of memory out of 5000000
+ 8225 multiletter control sequences out of 15000+600000
+ 78642 words of font info for 65 fonts, out of 8000000 for 9000
  1328 hyphenation exceptions out of 8191
  41i,8n,49p,249b,1516s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on NF16.pdf (9 pages).
+Output written on NF16.pdf (10 pages).

@@ -1,6 +1,7 @@
 % !TEX encoding = UTF-8 Unicode
 \documentclass{report}
 %À compiler avec XeLaTeX
+\usepackage{amsfonts}
 \usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -203,15 +204,36 @@ On mesure la complexité dans deux cas différents :
 $\theta$ permet de fixer une borne limite haute, tandis qu'$\Omega$ fixe une borne limite basse.\\
 Lorsque $\theta = \Omega$, on connait alors la complexité exacte, notée $\Phi$.
 \subsection{Propriétés utiles au calcul de la complexité}
-\paragraph{Inclusions}\ldots\\
-Def 1 : $f(n) \in \theta(g(n)) \Leftrightarrow \exists c, n_0$ tels que $\forall n \geq n_0, 0 \leq f(n) \leq g(n)$\\
-Def 2 : Si $\lim_{n \to \infty} f(n)/g(n) = \infty
-\Leftrightarrow
-\begin{cases}
-    f(n) \notin \theta(g(n)), g(n) \in \theta(f(n)) 
-\end{cases}
-$
+\paragraph{Inclusions}
+\begin{itemize}
+\item{$f(n) \in \theta(g(n)) \Leftrightarrow \exists c, n_0$ tels que $\forall n \geq n_0, 0 \leq f(n) \leq g(n)$}
+\item{$Si \lim_{n \to \infty} f(n)/g(n) = \infty \Leftrightarrow f(n) \notin \theta(g(n))$ et $g(n) \in \theta(f(n)) $}
+\item{$Si \lim_{n \to \infty} f(n)/g(n) = \lambda, \lambda \in \mathbb{R} \Leftrightarrow f(n) \in \theta(g(n))$ et $g(n) \in \theta(f(n)) $}
+\item{$Si \lim_{n \to \infty} f(n)/g(n) = 0, \Leftrightarrow f(n) \in \theta(g(n))$ et $g(n) \notin \theta(f(n)) $}
+\end{itemize}
+\paragraph{Règle du maximum}
+\begin{itemize}
+\item{Si $f,g$ tendent vers $\mathbb{R+}$, on a alors $\theta(f(n)+g(n)) = \theta(max(f(n),g(n)))$}
+\end{itemize}
+
+\subsection{Coût des opérations dans un algorithme}
+Selon la composition de l'algorithme, ce dernier peut avoir une complexité plus ou moins grande :
+\begin{itemize}
+    \item{Opération élémentaire/Affectation : $\theta(1)$}
+    \item{Bloc d'instruction : somme}
+    \item{Si/Sinon : $\theta(max(f_si(n), f_sinon(n)))$}
+    \item{Pour/Tant que/Repeter : $borne_supérieure_corpsBoucle * borne_supérieure_nombreItérations$}
+\end{itemize}
+
+
 \section{Preuve d'un algorithme}
+Prouver à algorithme consiste à montrer deux choses :
+\begin{itemize}
+    \item{Qu'il s'arrête ;}
+    \item{Qu'il donne le bon résultat ;}
+\end{itemize}
+
+% a faire, voir le prochain td / 13/10
 
 \chapter{Structures de données linéaires}
 \section{Tableaux}
