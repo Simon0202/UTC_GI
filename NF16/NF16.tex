@@ -20,12 +20,11 @@
 \setlength\parindent{0pt} % Removes all indentation from paragraphs
 
 \lstset{showstringspaces=false}
-\lstset{frame=single}
 \lstset{
-    language=C,
-    sensitive=true,
-    breaklines=true,
-    tabsize=2
+        language=C,
+        sensitive=true,
+        breaklines=true,
+        tabsize=1
 }
 
 \title{Algorithmes et structures de données: \textbf{NF16}}
@@ -37,22 +36,173 @@
 \tableofcontents
 
 \chapter{Rappels de C}
-\section{Pointeurs}
-\section{Tableaux}
-\section{Fonctions, procédures}
+\section{Gestion de la mémoire}
+\subsection{Pointeurs}
+Il est utile de d'abord rappeler ce que sont les pointeurs en C :
+\begin{itemize}
+\item{Un pointeur se déclare sous la forme <type>* <nomDuPointeur>; il doit obligatoirement pointer sur une variable.}
+\item{Un pointeur comporte l'adresse de la variable sur laquelle il pointe.}
+\item{Afin d'accéder au contenu de la variable sur laquelle le pointeur pointe, il faut utiliser \emph{*<pointeur>}}.
+\item{Utiliser <pointeur> permettra d'accéder à l'adresse de la variable pointée.}
+\end{itemize}
+En gros, un pointeur est une adresse, plus précisément celle de la variable pointée.
+
+
+\subsection{La mémoire en C}
+Il existe, en gros, 3 zones importantes de mémoire pour chaque programme C :
+\begin{itemize}
+\item{\emph{data segment}, qui contient toutes les données statiques et globales du programme;}
+\item{\emph{heap} ou \emph{tas}, qui est destinée aux données globales allouées dynamiquement;}
+\item{\emph{stack} ou la \emph{pile}, qui contient un ensemble de boites - \emph{frames} - qui contiennent, pour chaque boite, toutes les données locales/temporaires à chaque fonction, ainsi que les paramètres de fonction;}
+\end{itemize}
+Ainsi, l'emplacement d'une donnée/variable dépend de la manière dont l'espace mémoire lui a été réservée, et cela a des conséquences sur la portée de la variable, ainsi que sur sa "durée de vie". \\
+Dans le code suivant, on a des variables qui se trouvent à différents endroits de la mémoire en fonction de la manière dont ils ont étés déclarés/initialisés.
+\begin{lstlisting}
+/* Ces deux variables se trouvent dans le data segment */
+static int variableData = 2;
+int variableBSS = 3;
+void foo()
+{
+        /* Se trouve dans la pile, dans une boite "foo"
+         * Est détruit à la fin de l'exécution de foo() */
+        int i = 1;
+}
+
+int main()
+{
+        /* Se trouve dans le tas, est accessible pour n'importe quelle fonction */
+        int* pointeurEntier;
+        pointeurEntier = (int*) malloc(sizeof(int));
+        *pointeurEntier = 4;
+        /* Se trouve dans la pile, dans une boite "main" */
+        int entier = 5;
+        /* Une boite "foo" est créée au dessus de la boite "main" */
+        foo();
+        return 0;
+}
+
+\end{lstlisting}
+On le voit dans cet exemple que toutes les données ne se trouvent donc pas au même endroit.\\
+Lorsque on déclare une variable, par exemple avec \emph{int i=3}, cette variable sera automatiquement placée dans la pile, plus exactement dans la "boite" de la fonction.
+Ainsi, elle sera automatiquement supprimée à la fin de l'exécution de la fonction, ce qui est fâcheux si jamais on cherche par exemple à construire un objet qu'on veut réutiliser au delà de la fonction \ldots\\
+Dans le code suivant, par exemple :
+\begin{lstlisting}
+Objet* newObjet()
+{
+        Objet newObj;
+        newObj.attribut = 1;
+        [...]
+        return &newObj;
+}
+\end{lstlisting}
+On cherche ici à retourner l'adresse du nouvel Objet \emph{newObj}.
+Le problème, c'est que l'espace mémoire alloué au nouvel objet sera \textbf{automatiquement détruit} à la fin de la fonction.
+On renvoie donc une adresse/pointeur qui est faux, et qui pointera sur des données incorrectes.
+Pour remédier à cela, il faut recourir à la gestion \emph{dynamique} de la mémoire.\\
+\subsection{Gestion dynamique de la mémoire / malloc(), free()}
+\emph{malloc()} retourne un pointeur vers un espace mémoire alloué dans le tas.\\
+Cette fonction prend en paramètre une taille en éléments mémoire, qui correspond à la taille de l'espace mémoire à allouer.
+Par exemple, en reprenant l'objet \emph{Objet}, on pourrait allouer un espace mémoire avec malloc de la manière suivante :
+\begin{lstlisting}
+Objet* newObjet()
+{
+    Objet* pointeurObj = (Objet*) malloc(sizeof(Objet));
+    pointeurObj->attribut = 1;
+    return pointeurObj;
+}
+\end{lstlisting}
+On récupère alors l'adresse du nouvel objet.\\
+\par
+Il ne faut pas oublier de déallouer / libérer la mémoire qui a dynamiquement été louée.\\
+En effet, si on libère pas cet espace, il ne le sera jamais, ce qui peut entraîner des fuites mémoires.\\
+Pour libérer la mémoire, il faut alors utiliser la fonction \emph{free()}, qui prend en paramètre un pointeur vers l'espace mémoire à libérer.\\
+Toujours en prenant l'exemple précédent, on libère l'espace utilisé de la manière suivante :
+\begin{lstlisting}
+// On récupère un nouvel objet alloué dynamiquement
+Objet* obj = newObjet();
+// On libère l'espace
+free(obj);
+\end{lstlisting}
+
+\subsection{Passage de paramètres, modification d'objets à travers les fonctions}
+Comme écrit précédement, les paramètres passés par valeur sont copiés dans la pile.\\
+Par exemple, dans le code suivant :
+\begin{lstlisting}
+void func1(int i)
+{
+        i = 4;
+}
+
+void func2()
+{
+        int i = 2;
+        func1(i);
+        printf("%i",i);
+}
+\end{lstlisting}
+On pourrait croire que la valeur de \emph{i} dans \emph{func2} serait modifiée.
+Il en est rien, puisque \emph{i} est en fait copié dans la "boite" de la fonction "func1".
+C'est donc une \textbf{copie locale} de la variable \emph{i} qui est modifiée dans \emph{func1}.\\
+\par
+En réalité, pour modifier une valeur à travers les fonctions, il faut passer en paramètre u pointeur, ou une adresse mémoire vers le contenu à modifier.\\
+En reprenant l'exemple d'en haut, il faudrait alors écrire :
+\begin{lstlisting}
+void func1(int* i)
+{
+        *i = 4;
+}
+
+void func2()
+{
+        int i = 2;
+        func1(&i);
+        printf("%i", i);
+}
+\end{lstlisting}
+Dans ce cas là, on a bien modifié \emph{i}, et on affiche donc \emph{4} dans \emph{func2}.\\
+C'est un \emph{passage par pointeur}, à constrater avec le \emph{passage par valeur}.
 \section{typedef, structures}
+Les \emph{structures} en C ressemblent un peu aux \emph{objets} que l'on rencontre souvent dans des langages orientés objets, tel que le Java.\\
+Ils sont composés d'attributs, et se déclarent de la manière suivante :
+\begin{lstlisting}
+struct nomStructure {
+        [attributs]
+};
+\end{lstlisting}
+On peut ensuite les appeller avec \emph{struct nonStructure}.\\
+Il est aussi possible de faire des \emph{typedef}, qui permet de se débarasser de ce \emph{struct} à chaque appel :
+\begin{lstlisting}
+typedef struct {
+        [attributs]
+} nomStructure;
+\end{lstlisting}
+
 
 \chapter{Analyse d'algorithmes}
-\section{Caractéristiques d'un problème et d'un algorithme}
-\section{Récursivité et itérativité}
-\section{Complexité, preuve d'un algorithme}
+\section{Caractéristiques d'un algorithme}
+% pas utile ?
+\subsection{Spécification d'un algorithme}
+La spécification d'un algorithme correspond à décrire ce que l'algorithme fait sans expliquer comment il le fait.\\
+Cependant, une spécification se doit d'être précise.
+Ainsi, il faut expliciter quelles sont les données, les valeurs valables, comment se termine l'algorithme et ce qu'il retourne.
+
+\subsection{Problème d'un algorithme}
+Un algorithme doit prendre plusieurs facteurs en compte lors de son exécution :
+\begin{itemize}
+    \item{Une instance du problème, qui fournit toutes les données nécessaires à l'exécution de l'algorithme ;}
+    \item{Une taille du problème, qui caractérise le nombre de données que l'algorithme manipule ;}
+\end{itemize}
+Enfin, un algorithme est aussi caractérisé par sa vitesse d'exécution, et la place qu'il occupe lors de l'exécution : ce sont les complexités \emph{temporelles} et \emph{spatiales}.
+\section{Complexité d'un algorithme}
+
+\section{Preuve d'un algorithme}
 
 \chapter{Structures de données linéaires}
 \section{Tableaux}
 \section{Listes chaînées - simple/double}
-\section{???}
+\section{Arbres binaires}
 
 
 
 
-\end{document} 
+\end{document}
