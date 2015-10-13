@@ -194,15 +194,34 @@ Un algorithme doit prendre plusieurs facteurs en compte lors de son exécution :
 \end{itemize}
 Enfin, un algorithme est aussi caractérisé par sa vitesse d'exécution, et la place qu'il occupe lors de l'exécution : ce sont les complexités \emph{temporelles} et \emph{spatiales}.
 \section{Complexité d'un algorithme}
-
+La complexité d'un algorithme se mesure avec le comportement asymptotique\footnote{au voisinage de l'infini} de ce dernier.\\
+On mesure la complexité dans deux cas différents :
+\begin{itemize}
+    \item{Dans le \textbf{pire des cas}, noté $\theta$;}
+    \item{Dans le \textbf{meilleur des cas}, noté $\Omega$;}
+\end{itemize}
+$\theta$ permet de fixer une borne limite haute, tandis qu'$\Omega$ fixe une borne limite basse.\\
+Lorsque $\theta = \Omega$, on connait alors la complexité exacte, notée $\Phi$.
+\subsection{Propriétés utiles au calcul de la complexité}
+\paragraph{Inclusions}\ldots\\
+Def 1 : $f(n) \in \theta(g(n)) \Leftrightarrow \exists c, n_0$ tels que $\forall n \geq n_0, 0 \leq f(n) \leq g(n)$\\
+Def 2 : Si $\lim_{n \to \infty} f(n)/g(n) = \infty
+\Leftrightarrow
+\begin{cases}
+    f(n) \notin \theta(g(n)), g(n) \in \theta(f(n)) 
+\end{cases}
+$
 \section{Preuve d'un algorithme}
 
 \chapter{Structures de données linéaires}
 \section{Tableaux}
+\subsection{non triés}
+\subsection{triés}
 \section{Listes chaînées - simple/double}
+\section{Files / Structures \textsc{First In First Out}}
+
+\chapter{Structures de données arborescentes}
 \section{Arbres binaires}
-
-
 
 
 \end{document}

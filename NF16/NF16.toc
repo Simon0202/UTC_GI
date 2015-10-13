@@ -11,8 +11,14 @@
 \contentsline {subsection}{\numberline {2.1.1}Spécification d'un algorithme}{6}
 \contentsline {subsection}{\numberline {2.1.2}Problème d'un algorithme}{6}
 \contentsline {section}{\numberline {2.2}Complexité d'un algorithme}{6}
+\contentsline {subsection}{\numberline {2.2.1}Propriétés utiles au calcul de la complexité}{6}
+\contentsline {paragraph}{Inclusions}{6}
 \contentsline {section}{\numberline {2.3}Preuve d'un algorithme}{6}
 \contentsline {chapter}{\numberline {3}Structures de données linéaires}{7}
 \contentsline {section}{\numberline {3.1}Tableaux}{7}
+\contentsline {subsection}{\numberline {3.1.1}non triés}{7}
+\contentsline {subsection}{\numberline {3.1.2}triés}{7}
 \contentsline {section}{\numberline {3.2}Listes chaînées - simple/double}{7}
-\contentsline {section}{\numberline {3.3}Arbres binaires}{7}
+\contentsline {section}{\numberline {3.3}Files / Structures \textsc {First In First Out}}{7}
+\contentsline {chapter}{\numberline {4}Structures de données arborescentes}{8}
+\contentsline {section}{\numberline {4.1}Arbres binaires}{8}

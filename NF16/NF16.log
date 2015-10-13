@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015) (preloaded format=xelatex 2015.9.12)  13 OCT 2015 18:21
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015) (preloaded format=xelatex 2015.9.12)  13 OCT 2015 18:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -434,16 +434,28 @@ Chapitre 2.
 
 ]
 Chapitre 3.
+
+LaTeX Font Warning: Font shape `T1/lmr/bx/sc' undefined
+(Font)              using `T1/lmr/bx/n' instead on input line 221.
+
 [7
 
-] (./NF16.aux) ) 
-Here is how much of TeX's memory you used:
- 4891 strings out of 493706
- 68538 string characters out of 6145769
- 207438 words of memory out of 5000000
- 8147 multiletter control sequences out of 15000+600000
- 67383 words of font info for 50 fonts, out of 8000000 for 9000
- 1328 hyphenation exceptions out of 8191
- 41i,7n,49p,249b,1516s stack positions out of 5000i,500n,10000p,200000b,80000s
+]
+Chapitre 4.
+[8
 
-Output written on NF16.pdf (8 pages).
+] (./NF16.aux)
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 4900 strings out of 493706
+ 68637 string characters out of 6145769
+ 207438 words of memory out of 5000000
+ 8153 multiletter control sequences out of 15000+600000
+ 76162 words of font info for 53 fonts, out of 8000000 for 9000
+ 1328 hyphenation exceptions out of 8191
+ 41i,8n,49p,249b,1516s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+Output written on NF16.pdf (9 pages).
