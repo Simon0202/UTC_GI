@@ -202,6 +202,25 @@ Les process permettent l'accès à des instructions/constructions bien plus éla
 On a donc accès à des boucles - \emph{LOOP} -, des tant-que - \emph{WHILE} -, \ldots
 % faire l'inventaire des fonctions ?
 
+\subsection{\emph{Feux de circulation}}
+todo
+
+\subsection{Principe Synchrone et Asynchrone}
+\begin{verbatim}
+Entity memory_1bit is Port (e, sync:IN BIT;
+					  s:OUT BIT);
+END memory_1bit;
+ARCHITECTURE titi OF memory_1bit IS
+BEGIN
+	PROCESS (sync) \emph{--Ce process ne régagit qu'au signal sync}
+		BEGIN
+			IF (sync'event AND sync='1') THEN \emph{On effectue la transition de 0 à 1 sur Sync}
+				s<=e;
+			ENDIF;
+	END PROCESS;
+END titi;
+
+\end{verbatim}
 
 
 \end{document} 
